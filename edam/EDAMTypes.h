@@ -838,9 +838,6 @@ typedef int64_t EDAMTimestamp;
   NSString * __sourceURL;
   NSString * __sourceApplication;
   EDAMTimestamp __shareDate;
-  EDAMTimestamp __taskDate;
-  EDAMTimestamp __taskCompleteDate;
-  EDAMTimestamp __taskDueDate;
   NSString * __placeName;
   NSString * __contentClass;
   EDAMLazyMap * __applicationData;
@@ -855,16 +852,13 @@ typedef int64_t EDAMTimestamp;
   BOOL __sourceURL_isset;
   BOOL __sourceApplication_isset;
   BOOL __shareDate_isset;
-  BOOL __taskDate_isset;
-  BOOL __taskCompleteDate_isset;
-  BOOL __taskDueDate_isset;
   BOOL __placeName_isset;
   BOOL __contentClass_isset;
   BOOL __applicationData_isset;
   BOOL __lastEditedBy_isset;
 }
 
-- (id) initWithSubjectDate: (EDAMTimestamp) subjectDate latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude author: (NSString *) author source: (NSString *) source sourceURL: (NSString *) sourceURL sourceApplication: (NSString *) sourceApplication shareDate: (EDAMTimestamp) shareDate taskDate: (EDAMTimestamp) taskDate taskCompleteDate: (EDAMTimestamp) taskCompleteDate taskDueDate: (EDAMTimestamp) taskDueDate placeName: (NSString *) placeName contentClass: (NSString *) contentClass applicationData: (EDAMLazyMap *) applicationData lastEditedBy: (NSString *) lastEditedBy;
+- (id) initWithSubjectDate: (EDAMTimestamp) subjectDate latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude author: (NSString *) author source: (NSString *) source sourceURL: (NSString *) sourceURL sourceApplication: (NSString *) sourceApplication shareDate: (EDAMTimestamp) shareDate placeName: (NSString *) placeName contentClass: (NSString *) contentClass applicationData: (EDAMLazyMap *) applicationData lastEditedBy: (NSString *) lastEditedBy;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -879,9 +873,6 @@ typedef int64_t EDAMTimestamp;
 @property (nonatomic, retain, getter=sourceURL, setter=setSourceURL:) NSString * sourceURL;
 @property (nonatomic, retain, getter=sourceApplication, setter=setSourceApplication:) NSString * sourceApplication;
 @property (nonatomic, getter=shareDate, setter=setShareDate:) EDAMTimestamp shareDate;
-@property (nonatomic, getter=taskDate, setter=setTaskDate:) EDAMTimestamp taskDate;
-@property (nonatomic, getter=taskCompleteDate, setter=setTaskCompleteDate:) EDAMTimestamp taskCompleteDate;
-@property (nonatomic, getter=taskDueDate, setter=setTaskDueDate:) EDAMTimestamp taskDueDate;
 @property (nonatomic, retain, getter=placeName, setter=setPlaceName:) NSString * placeName;
 @property (nonatomic, retain, getter=contentClass, setter=setContentClass:) NSString * contentClass;
 @property (nonatomic, retain, getter=applicationData, setter=setApplicationData:) EDAMLazyMap * applicationData;
@@ -915,15 +906,6 @@ typedef int64_t EDAMTimestamp;
 - (EDAMTimestamp) shareDate;
 - (void) setShareDate: (EDAMTimestamp) shareDate;
 
-- (EDAMTimestamp) taskDate;
-- (void) setTaskDate: (EDAMTimestamp) taskDate;
-
-- (EDAMTimestamp) taskCompleteDate;
-- (void) setTaskCompleteDate: (EDAMTimestamp) taskCompleteDate;
-
-- (EDAMTimestamp) taskDueDate;
-- (void) setTaskDueDate: (EDAMTimestamp) taskDueDate;
-
 - (NSString *) placeName;
 - (void) setPlaceName: (NSString *) placeName;
 
@@ -947,9 +929,6 @@ typedef int64_t EDAMTimestamp;
 - (BOOL) sourceURLIsSet;
 - (BOOL) sourceApplicationIsSet;
 - (BOOL) shareDateIsSet;
-- (BOOL) taskDateIsSet;
-- (BOOL) taskCompleteDateIsSet;
-- (BOOL) taskDueDateIsSet;
 - (BOOL) placeNameIsSet;
 - (BOOL) contentClassIsSet;
 - (BOOL) applicationDataIsSet;

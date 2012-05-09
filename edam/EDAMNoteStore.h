@@ -861,52 +861,6 @@
 - (BOOL) titleIsSet;
 @end
 
-@interface EDAMRelatedNotesExampleText : NSObject <NSCoding> {
-  NSString * __text;
-
-  BOOL __text_isset;
-}
-
-- (id) initWithText: (NSString *) text;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=text, setter=setText:) NSString * text;
-#else
-
-- (NSString *) text;
-- (void) setText: (NSString *) text;
-
-#endif
-
-- (BOOL) textIsSet;
-@end
-
-@interface EDAMRelatedNotesQuery : NSObject <NSCoding> {
-  EDAMRelatedNotesExampleText * __exampleText;
-
-  BOOL __exampleText_isset;
-}
-
-- (id) initWithExampleText: (EDAMRelatedNotesExampleText *) exampleText;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=exampleText, setter=setExampleText:) EDAMRelatedNotesExampleText * exampleText;
-#else
-
-- (EDAMRelatedNotesExampleText *) exampleText;
-- (void) setExampleText: (EDAMRelatedNotesExampleText *) exampleText;
-
-#endif
-
-- (BOOL) exampleTextIsSet;
-@end
-
 @protocol EDAMNoteStore <NSObject>
 - (EDAMSyncState *) getSyncState: (NSString *) authenticationToken;  // throws EDAMUserException *, EDAMSystemException *, TException
 - (EDAMSyncChunk *) getSyncChunk: (NSString *) authenticationToken : (int32_t) afterUSN : (int32_t) maxEntries : (BOOL) fullSyncOnly;  // throws EDAMUserException *, EDAMSystemException *, TException
@@ -982,7 +936,6 @@
 - (NSString *) shareNote: (NSString *) authenticationToken : (EDAMGuid) guid;  // throws EDAMUserException *, EDAMNotFoundException *, EDAMSystemException *, TException
 - (void) stopSharingNote: (NSString *) authenticationToken : (EDAMGuid) guid;  // throws EDAMUserException *, EDAMNotFoundException *, EDAMSystemException *, TException
 - (EDAMAuthenticationResult *) authenticateToSharedNote: (NSString *) guid : (NSString *) noteKey;  // throws EDAMUserException *, EDAMNotFoundException *, EDAMSystemException *, TException
-- (NSArray *) findRelatedNotes: (NSString *) authenticationToken : (EDAMRelatedNotesQuery *) query : (int32_t) maxNotes;  // throws EDAMUserException *, EDAMSystemException *, EDAMNotFoundException *, TException
 @end
 
 @interface EDAMNoteStoreClient : NSObject <EDAMNoteStore> {

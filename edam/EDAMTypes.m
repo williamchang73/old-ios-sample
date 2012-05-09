@@ -4941,7 +4941,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMNoteAttributes
 
-- (id) initWithSubjectDate: (EDAMTimestamp) subjectDate latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude author: (NSString *) author source: (NSString *) source sourceURL: (NSString *) sourceURL sourceApplication: (NSString *) sourceApplication shareDate: (EDAMTimestamp) shareDate taskDate: (EDAMTimestamp) taskDate taskCompleteDate: (EDAMTimestamp) taskCompleteDate taskDueDate: (EDAMTimestamp) taskDueDate placeName: (NSString *) placeName contentClass: (NSString *) contentClass applicationData: (EDAMLazyMap *) applicationData lastEditedBy: (NSString *) lastEditedBy
+- (id) initWithSubjectDate: (EDAMTimestamp) subjectDate latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude author: (NSString *) author source: (NSString *) source sourceURL: (NSString *) sourceURL sourceApplication: (NSString *) sourceApplication shareDate: (EDAMTimestamp) shareDate placeName: (NSString *) placeName contentClass: (NSString *) contentClass applicationData: (EDAMLazyMap *) applicationData lastEditedBy: (NSString *) lastEditedBy
 {
   self = [super init];
   __subjectDate = subjectDate;
@@ -4962,12 +4962,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __sourceApplication_isset = YES;
   __shareDate = shareDate;
   __shareDate_isset = YES;
-  __taskDate = taskDate;
-  __taskDate_isset = YES;
-  __taskCompleteDate = taskCompleteDate;
-  __taskCompleteDate_isset = YES;
-  __taskDueDate = taskDueDate;
-  __taskDueDate_isset = YES;
   __placeName = [placeName retain];
   __placeName_isset = YES;
   __contentClass = [contentClass retain];
@@ -5026,21 +5020,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     __shareDate = [decoder decodeInt64ForKey: @"shareDate"];
     __shareDate_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"taskDate"])
-  {
-    __taskDate = [decoder decodeInt64ForKey: @"taskDate"];
-    __taskDate_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"taskCompleteDate"])
-  {
-    __taskCompleteDate = [decoder decodeInt64ForKey: @"taskCompleteDate"];
-    __taskCompleteDate_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"taskDueDate"])
-  {
-    __taskDueDate = [decoder decodeInt64ForKey: @"taskDueDate"];
-    __taskDueDate_isset = YES;
   }
   if ([decoder containsValueForKey: @"placeName"])
   {
@@ -5102,18 +5081,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   if (__shareDate_isset)
   {
     [encoder encodeInt64: __shareDate forKey: @"shareDate"];
-  }
-  if (__taskDate_isset)
-  {
-    [encoder encodeInt64: __taskDate forKey: @"taskDate"];
-  }
-  if (__taskCompleteDate_isset)
-  {
-    [encoder encodeInt64: __taskCompleteDate forKey: @"taskCompleteDate"];
-  }
-  if (__taskDueDate_isset)
-  {
-    [encoder encodeInt64: __taskDueDate forKey: @"taskDueDate"];
   }
   if (__placeName_isset)
   {
@@ -5315,57 +5282,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __shareDate_isset = NO;
 }
 
-- (int64_t) taskDate {
-  return __taskDate;
-}
-
-- (void) setTaskDate: (int64_t) taskDate {
-  __taskDate = taskDate;
-  __taskDate_isset = YES;
-}
-
-- (BOOL) taskDateIsSet {
-  return __taskDate_isset;
-}
-
-- (void) unsetTaskDate {
-  __taskDate_isset = NO;
-}
-
-- (int64_t) taskCompleteDate {
-  return __taskCompleteDate;
-}
-
-- (void) setTaskCompleteDate: (int64_t) taskCompleteDate {
-  __taskCompleteDate = taskCompleteDate;
-  __taskCompleteDate_isset = YES;
-}
-
-- (BOOL) taskCompleteDateIsSet {
-  return __taskCompleteDate_isset;
-}
-
-- (void) unsetTaskCompleteDate {
-  __taskCompleteDate_isset = NO;
-}
-
-- (int64_t) taskDueDate {
-  return __taskDueDate;
-}
-
-- (void) setTaskDueDate: (int64_t) taskDueDate {
-  __taskDueDate = taskDueDate;
-  __taskDueDate_isset = YES;
-}
-
-- (BOOL) taskDueDateIsSet {
-  return __taskDueDate_isset;
-}
-
-- (void) unsetTaskDueDate {
-  __taskDueDate_isset = NO;
-}
-
 - (NSString *) placeName {
   return [[__placeName retain] autorelease];
 }
@@ -5537,30 +5453,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
-      case 18:
-        if (fieldType == TType_I64) {
-          int64_t fieldValue = [inProtocol readI64];
-          [self setTaskDate: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 19:
-        if (fieldType == TType_I64) {
-          int64_t fieldValue = [inProtocol readI64];
-          [self setTaskCompleteDate: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
-      case 20:
-        if (fieldType == TType_I64) {
-          int64_t fieldValue = [inProtocol readI64];
-          [self setTaskDueDate: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
       case 21:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
@@ -5659,21 +5551,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
     [outProtocol writeI64: __shareDate];
     [outProtocol writeFieldEnd];
   }
-  if (__taskDate_isset) {
-    [outProtocol writeFieldBeginWithName: @"taskDate" type: TType_I64 fieldID: 18];
-    [outProtocol writeI64: __taskDate];
-    [outProtocol writeFieldEnd];
-  }
-  if (__taskCompleteDate_isset) {
-    [outProtocol writeFieldBeginWithName: @"taskCompleteDate" type: TType_I64 fieldID: 19];
-    [outProtocol writeI64: __taskCompleteDate];
-    [outProtocol writeFieldEnd];
-  }
-  if (__taskDueDate_isset) {
-    [outProtocol writeFieldBeginWithName: @"taskDueDate" type: TType_I64 fieldID: 20];
-    [outProtocol writeI64: __taskDueDate];
-    [outProtocol writeFieldEnd];
-  }
   if (__placeName_isset) {
     if (__placeName != nil) {
       [outProtocol writeFieldBeginWithName: @"placeName" type: TType_STRING fieldID: 21];
@@ -5726,12 +5603,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"\"%@\"", __sourceApplication];
   [ms appendString: @",shareDate:"];
   [ms appendFormat: @"%qi", __shareDate];
-  [ms appendString: @",taskDate:"];
-  [ms appendFormat: @"%qi", __taskDate];
-  [ms appendString: @",taskCompleteDate:"];
-  [ms appendFormat: @"%qi", __taskCompleteDate];
-  [ms appendString: @",taskDueDate:"];
-  [ms appendFormat: @"%qi", __taskDueDate];
   [ms appendString: @",placeName:"];
   [ms appendFormat: @"\"%@\"", __placeName];
   [ms appendString: @",contentClass:"];
